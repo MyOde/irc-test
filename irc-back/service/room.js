@@ -1,7 +1,8 @@
 // @flow
+const { performAction } = require('utilities/db.js')
 
-getRoom = (id: int) => {
-
+const getRoom = (id: int): string => {
+  return id;
 }
 
 module.exports = {

@@ -23,6 +23,7 @@
                 ]
             }
         ],
+        "node/no-missing-require": 0,
         "no-unused-vars": ["error", { "argsIgnorePattern": "^_"}],
         "flowtype/define-flow-type": 1,
         "flowtype/delimiter-dangle": [
@@ -78,6 +79,12 @@
     },
     "plugins": [
         "node",
-        "flowtype"
-    ]
+        "flowtype",
+        "import"
+    ],
+    "settings": {
+        "import/resolver": {
+            "babel-module": {}
+        }
+    }
 }
