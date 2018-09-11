@@ -3,18 +3,30 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "babel-node server",
+        "lint": "eslint server.js"
   },
   "author": "Toms Ozols",
   "license": "ISC",
   "dependencies": {
+        "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "express-ws": "^4.0.0",
-    "mongodb": "^3.1.4"
+        "mongodb": "3.1.4"
+    },
+    "engines": {
+        "node": ">=10.10.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
-    "eslint": "^5.5.0"
+        "@babel/node": "^7.0.0",
+        "@babel/preset-flow": "^7.0.0",
+        "babel-eslint": "^9.0.0",
+        "eslint": "^5.5.0",
+        "eslint-plugin-flowtype": "^2.50.0",
+        "eslint-plugin-node": "^7.0.1",
+        "flow": "^0.2.3",
+        "flow-bin": "^0.80.0"
   }
 }
