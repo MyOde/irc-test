@@ -4,7 +4,7 @@ export type MongoClientType = {
 };
 
 export type DatabaseType = {
-    collection: (string, ?CollectionOptionsType, CollectionCallbackType) => void
+    collection: (string, ?CollectionOptionsType, ?CollectionCallbackType) => void
 };
 
 export type CollectionOptionsType = {

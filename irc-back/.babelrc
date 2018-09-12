@@ -3,6 +3,7 @@
         "@babel/preset-flow"
     ],
     "plugins": [
+        "@babel/proposal-object-rest-spread",
         ["module-resolver", {
             "root": ["./"],
             "alias": {
