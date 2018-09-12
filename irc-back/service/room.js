@@ -1,5 +1,5 @@
 // @flow
-import type { ChatRoomType } from 'types/chat.js';
+import type { ChatRoomType } from 'schemas/chat.js';
 const { ChatModel, MessageModel } = require('utilities/ircDb.js');
 
 const getRoom = async (id: int): ChatRoomType => {
@@ -11,10 +11,22 @@ const getRoom = async (id: int): ChatRoomType => {
 
 const createRoom = async (name: string, creatingUserId: string): void => {
     const room = new ChatModel({ name, participants: [creatingUserId] })
-    room.save();
+    await room.save();
 };
+
+const createMessage = async (content: string, roomId: string, userId: string): void => {
+    const message = new MessageModel({ content, roomId, userId });
+    await message.save();
+}
+
+const getParticipantRooms = async (userId: string): [ChatRoomType] => {
+    const rooms = await ChatModel.find({ participants: userId }).exec();
+    return rooms;
+}
 
 module.exports = {
     getRoom,
-    createRoom
+    createRoom,
+    createMessage,
+    getParticipantRooms
 }

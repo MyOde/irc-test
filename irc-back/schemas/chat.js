@@ -6,4 +6,10 @@ const chatRoomSchema = new Schema({
     participants: [String]
 });
 
+export type ChatRoomType = {
+    _id: string,
+    name: string,
+    participants: [string]
+};
+
 module.exports = chatRoomSchema;

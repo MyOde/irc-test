@@ -16,6 +16,7 @@ const sessionAuthMiddleware = async (
     const { cookies } = req;
     const sessionId = cookies[SESSION_ID];
 
+    // TODO Will be connected even for endpoints that might not need it.
     await connectIrcDb();
     if (!sessionId) {
         const newSessionId = randomBytes(32).toString('hex');
