@@ -5,42 +5,38 @@ const { sync } = require('utilities/express.js')
 const { getRoom, createRoom, createMessage, getParticipantRooms } = require('service/room.js');
 
 const apiRouter = Router();
-const everythingIsMyFault = (err, req: $Request, res: $Response): Promise<void> => {
-    res.status(500).send();
-}
 
 apiRouter.get('/room/list', sync(async ({ user }: $Request, res: $Response): Promise<void> => {
     const { _id } = user;
     const rooms = await getParticipantRooms(_id);
+  console.log(rooms);
     res.send(rooms);
 }));
 
-apiRouter.get('/room/:id', sync(async (req: $Request, res: $Response): Promise<void> => {
-    const { id } = req.parameters;
-    const room = await getRoom(id);
-    res.send(room);
+apiRouter.get('/room/:id', sync(async ({ params }: $Request, res: $Response): Promise<void> => {
+  const { id } = params;
+  const messages = await getRoom(id);
+  res.send(messages);
 }));
 
 // TODO Add newly created resource id in response
 apiRouter.post('/room', sync(async ({ body, user }: $Request, res: $Response): Promise<void> => {
   const { name } = body;
   const { _id } = user;
-  await createRoom(name, _id);
-  res.status(201).send();
+  const id = await createRoom(name, _id);
+  res.status(200).send(id);
 }));
 
 // TODO Add newly created resource id in response
 apiRouter.post('/room/:id/message', sync(async (
-    { parameters, body, user }: $Request,
+  { params, body, user }: $Request,
     res: $Response
 ): Promise<void> => {
-    const { id } = parameters;
+  const { id } = params;
     const { content } = body;
     const { _id } = user;
-    await createMessage(content, id, _id);
-    res.status(201).send();
+  const messageId = await createMessage(content, id, _id);
+  res.status(200).send(messageId);
 }));
-
-apiRouter.use(everythingIsMyFault);
 
 module.exports = apiRouter;

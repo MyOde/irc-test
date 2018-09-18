@@ -5,6 +5,7 @@
     "parser": "babel-eslint",
     "extends": ["eslint:recommended", "plugin:node/recommended"],
     "rules": {
+    "indent": ["error", 2],
         "quotes": [2, "single"],
         "strict": [2, "never"],
         "flowtype/type-import-style": [

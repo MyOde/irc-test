@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const express = require('express');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
+const proxy = require('http-proxy-middleware');
 const { config, port } = require('./webpack.config');
 
 const app = express();
@@ -27,6 +28,7 @@ app.use(devMiddleware(compiler, {
 
 app.use(hotMiddleware(compiler));
 
+app.use('/api', proxy({ target: 'http://localhost:44444', changeOrigin: false }));
 app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, 'index.html'));
 });

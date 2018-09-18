@@ -2,7 +2,8 @@
 import type { $Request, $Response, NextFunction } from 'express';
 const { randomBytes } = require('crypto');
 const { sync } = require('utilities/express.js');
-const { connectIrcDb, closeIrcDb, UserModel } = require('utilities/ircDb.js');
+// const { connectIrcDb, closeIrcDb, UserModel } = require('utilities/ircDb.js');
+const { connectIrcDb, UserModel } = require('utilities/ircDb.js');
 
 const SESSION_ID = 'sessionId';
 const COOKIE_AGE = 900000;
@@ -32,7 +33,6 @@ const sessionAuthMiddleware = async (
     }
 
     next();
-    closeIrcDb();
 };
 
 module.exports = sync(sessionAuthMiddleware);

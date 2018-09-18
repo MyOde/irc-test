@@ -6,9 +6,6 @@
         "@babel/proposal-object-rest-spread",
         ["module-resolver", {
             "root": ["./"],
-            "alias": {
-                "typ": "./types"
-            }
         }]
     ]
 }

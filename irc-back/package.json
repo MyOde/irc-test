@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-        "start": "babel-node server",
-        "lint": "eslint server.js"
+        "start": "babel-node server"
   },
   "author": "Toms Ozols",
   "license": "ISC",

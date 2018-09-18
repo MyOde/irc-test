@@ -1,5 +1,6 @@
 const { join } = require('path');
 const { HotModuleReplacementPlugin } = require('webpack');
+const FlowWebpackPlugin = require('flow-webpack-plugin');
 
 const port = 3000;
 const outputPath = join(__dirname, 'dist');
@@ -8,6 +9,7 @@ const config = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
     'webpack-hot-middleware/client',
+    '@babel/polyfill',
     './src/index'
   ],
   output: {
@@ -16,6 +18,7 @@ const config = {
     publicPath: '/static/'
   },
   plugins: [
+    new FlowWebpackPlugin(),
     new HotModuleReplacementPlugin()
   ],
   devServer: {

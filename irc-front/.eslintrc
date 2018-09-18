@@ -3,7 +3,13 @@
     "browser": true
   },
   "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
   "rules": {
+    "react/display-name": 0,
+    "indent": ["error", 2, { "SwitchCase": 1 }],
     "quotes": [2, "single"],
     "strict": [2, "never"],
     "react/jsx-uses-react": 2,

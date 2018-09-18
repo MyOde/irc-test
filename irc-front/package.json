@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "lint": "eslint 'src/**'",
+    "flow": "node_modules/.bin/flow status"
   },
   "author": "Toms Ozols",
   "license": "ISC",
@@ -17,20 +19,28 @@
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.2",
+    "babel-plugin-module-resolver": "^3.1.1",
     "eslint": "^5.5.0",
     "eslint-loader": "^2.1.0",
     "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-react": "^7.11.1",
     "express": "^4.16.3",
+    "flow": "^0.2.3",
+    "flow-bin": "^0.80.0",
+    "http-proxy-middleware": "^0.19.0",
     "react-hot-loader": "^4.3.6",
     "webpack": "^4.18.0",
     "webpack-dev-middleware": "^3.3.0",
-    "webpack-hot-middleware": "^2.23.1"
+    "webpack-hot-middleware": "^2.23.1",
+    "flow-webpack-plugin": "^1.2.0"
   },
   "dependencies": {
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
+    "react-modal": "^3.5.1",
+    "react-redux": "^5.0.7",
     "redux": "^4.0.0",
+    "redux-first-router": "0.0.9-rudy",
     "redux-loop": "^4.4.1"
   }
 }
