@@ -1,13 +1,14 @@
 {
-    "presets": [
-        "@babel/preset-react",
-        "@babel/preset-env",
-        "@babel/preset-flow"
-    ],
-    "plugins": [
+  "presets": [
+    "@babel/preset-react",
+    "@babel/preset-env",
+    "@babel/preset-flow"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
     "react-hot-loader/babel",
     ["module-resolver", {
       "root": ["./src"]
     }]
-    ]
+  ]
 }

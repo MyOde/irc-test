@@ -10,7 +10,9 @@ type IrcButtonPropsType = {
   children: string
 };
 
-const IrcButton = ({ action, actionArgs, children }: IrcButtonPropsType): Element<'button'> => {
+const IrcButton = (
+  { action, actionArgs, children }: IrcButtonPropsType
+): Element<'button'> => {
   const runAction = (): void => action(...actionArgs);
   return (
     <button onClick={runAction}>

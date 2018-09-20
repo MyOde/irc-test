@@ -7,12 +7,15 @@ import { hot } from 'react-hot-loader';
 import { NOT_FOUND } from 'redux-first-router';
 import { locationType } from 'ducks/location/selectors.js';
 import Home from 'pages/home.jsx';
+import Header from 'pages/header.jsx';
 import ChatRoom from 'pages/chatRoom.jsx';
 import NotFound from 'pages/notFound.jsx';
 
 type AppPropsType = {
   page: string
 };
+
+const title = 'Irc test';
 
 const App = ({ page }: AppPropsType): Node => {
   const CurrentPage = {
@@ -21,8 +24,13 @@ const App = ({ page }: AppPropsType): Node => {
     [NOT_FOUND]: NotFound
   }[page];
 
-  return <CurrentPage />
-}
+  return (
+    <div>
+      <Header title={title}/>
+      <CurrentPage />
+    </div>
+  );
+};
 
 const mapState = (state: StateType): AppPropsType => {
   return {

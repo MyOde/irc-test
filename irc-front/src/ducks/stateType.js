@@ -16,6 +16,10 @@ import type {
   PopulateRoomMessagesType
 } from 'ducks/chatRoom/actions.js';
 
+import type {
+  ActOnUserNameType
+} from 'ducks/user/actions.js';
+
 export type FluxActionType =
   PopulateHomeRoomsType
   | ChangeToRoomType
@@ -24,7 +28,8 @@ export type FluxActionType =
   | OpenDialogType
   | CloseDialogType
   | PopulateRoomMessagesType
-  | NavigateHomeType;
+  | NavigateHomeType
+  | ActOnUserNameType;
 
 export type DispatchFuncType = (FluxActionType) => void;
 
@@ -37,6 +42,11 @@ export type LocationReducerType = {
     type: string,
     payload: {}
   }
+};
+
+export type UserReducerType = {
+  name: string,
+  userRetrieved: boolean
 };
 
 export type StateType = {

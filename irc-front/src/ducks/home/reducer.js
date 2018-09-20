@@ -8,7 +8,8 @@ import { changeToEmptyRoom, populateHomeRooms } from './actions.js';
 const defaultState = {
   rooms: [],
   isLoading: false,
-  isSecondaryLoading: false
+  isSecondaryLoading: false,
+  roomsLoaded: false
 };
 
 const reducer = (
@@ -20,10 +21,16 @@ const reducer = (
       const { rooms } = action;
       return {
         ...state,
-        rooms
+        rooms,
+        roomsLoaded: true,
+        isLoading: false
       };
     }
     case 'HOME': {
+      if (state.roomsLoaded) {
+        return state;
+      }
+
       return loop(
         { ...state, isLoading: true },
         Cmd.run(getUserRooms, {

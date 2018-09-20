@@ -15,7 +15,8 @@ const reducer = (
 ): ChatRoomReducerType => {
   switch (action.type) {
     case 'ROOM': {
-      const { id, isNew } = action;
+      const { payload, isNew } = action;
+      const { id } = payload;
       if (isNew) {
         return state;
       }

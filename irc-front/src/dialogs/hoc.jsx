@@ -17,9 +17,11 @@ type DispatchPropsType = {
   closeDialog: (string) => void
 };
 
+Modal.setAppElement('#root');
+
 const DialogHoc =
   (identifier: string): ((Node) => Node) =>
-    (component: Node): Node => {
+    (Component: Node): Node => {
       const Dialog = ({ activeDialogs, closeDialog }: PropsType): Node => {
         const last = activeDialogs[activeDialogs.length - 1];
         const closeFunc = (): void => closeDialog(identifier);
@@ -34,7 +36,7 @@ const DialogHoc =
                 </button>
               </div>
               <div>
-                {component}
+                <Component />
               </div>
             </Modal>
           );

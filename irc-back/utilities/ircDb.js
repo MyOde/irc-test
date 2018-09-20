@@ -14,13 +14,13 @@ const CONNECTION_STRING = 'mongodb://localhost';
 
 const closeIrcDb = () => { mongoose.connection.close(); }
 const connectIrcDb = async (options: ?ConnectionConnectOpts): Promise<void> => {
-    const optionsNew = {
-        ...options,
-        useNewUrlParser: true,
-        dbName: DATABASE_NAME
-    }
+  const optionsNew = {
+    ...options,
+    useNewUrlParser: true,
+    dbName: DATABASE_NAME
+  }
 
-    await mongoose.connect(CONNECTION_STRING, optionsNew);
+  await mongoose.connect(CONNECTION_STRING, optionsNew);
 
 }
 
@@ -29,9 +29,9 @@ const MessageModel = mongoose.model(MESSAGE_COLLECTION, messageSchema);
 const UserModel= mongoose.model(USER_COLLECTION, userSchema);
 
 module.exports = {
-    connectIrcDb,
-    closeIrcDb,
-    ChatModel,
-    MessageModel,
-    UserModel
+  connectIrcDb,
+  closeIrcDb,
+  ChatModel,
+  MessageModel,
+  UserModel
 };

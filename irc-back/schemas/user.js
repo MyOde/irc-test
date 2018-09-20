@@ -1,9 +1,12 @@
 // @flow
 const { Schema } = require('mongoose');
+const setSerializer = require('./utilities.js');
 
-const messageSchema = new Schema({
-    sessionId: String,
-    alias: String
+const userSchema = new Schema({
+  sessionId: String,
+  name: String
 });
 
-module.exports = messageSchema;
+setSerializer(userSchema,);
+
+module.exports = userSchema;

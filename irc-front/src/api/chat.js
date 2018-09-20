@@ -1,25 +1,66 @@
 // @flow
 import type { ChatHeaderType } from 'ducks/stateType';
 
-const API = '/api/room';
+const roomApi = '/api/room';
+const userApi = '/api/user';
 
-const fetchJson = async <T>(url: string, body: mixed, options: mixed): Promise<T> => {
-  const newOptions = { ...options, credentials: 'same-origin' };
+const fetchJson = async <T>(
+  url: string,
+  options: mixed
+): Promise<T> => {
+  const newOptions = {
+    ...options,
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8'
+    }
+  };
+
   const res = await fetch(url, newOptions);
-  return res.json();
-}
+  const contentType = res.headers.get('content-type');
+  const responseMime = contentType.split(';')[0];
+  switch (responseMime) {
+    case 'text/plain': {
+      return res.text();
+    }
+    case 'application/json': {
+      return res.json();
+    }
+    default: {
+      throw `No parsing scenario for content type: ${contentType}`;
+    }
+  }
+};
 
-const fetchPost = async <T>(url: string, body: mixed, options: mixed = {}): Promise<T> =>
-  fetchJson(url, { ...options, method: 'POST', body: JSON.stringify(body) });
+const fetchPost = async <T>(
+  url: string, body: mixed, options: mixed = {}
+): Promise<T> => {
+  const newOptions = {
+    ...options,
+    method: 'POST',
+    body: JSON.stringify(body)
+  };
 
-const fetchGet = async <T>(url: string, options: mixed = {}): Promise<T> =>
+  return await fetchJson(url, newOptions);
+};
+
+const fetchGet = async <T>(
+  url: string,
+  options: mixed = {}
+): Promise<T> =>
   fetchJson(url, { ...options, method: 'GET' });
 
-export const getRoomMessages = async (id: string): Promise<Array<string>> =>
-  fetchGet(`${API}/${id}`);
+export const getRoomMessages = async (
+  id: string
+): Promise<Array<string>> =>
+  fetchGet(`${roomApi}/${id}`);
 
 export const postNewRoom = async (name: string): Promise<string> =>
-  fetchPost(`${API}`, { name });
+  fetchPost(`${roomApi}`, { name });
 
-export const getUserRooms = async (): Promise<Array<ChatHeaderType>> =>
-  fetchGet(`${API}/list`);
+export const getUserRooms = async (
+): Promise<Array<ChatHeaderType>> =>
+  fetchGet(`${roomApi}/list`);
+
+export const getUserInfo = async (): Promise<string> =>
+  fetchGet(`${userApi}`);

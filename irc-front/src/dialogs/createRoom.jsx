@@ -10,15 +10,40 @@ type DispatchPropsType = {
   saveNewRoom: (string) => void
 };
 
-const CreateRoomDialog = ({ saveNewRoom }: DispatchPropsType): Node => {
-  return (
-    <div>
-      <input type='text' />
-      <button onClick={saveNewRoom}>Create</button>
-    </div>
-  );
-};
+class CreateRoomDialog extends React.Component {
+  constructor(props: DispatchPropsType) {
+    super(props);
+    this.state = {
+      inputValue: ''
+    };
+  }
 
+  handleInputChange = (event: SyntheticEvent<HTMLInputElement>) => {
+    this.setState({
+      inputValue: event.target.value
+    });
+  }
+
+  render(): Node {
+    const { saveNewRoom } = this.props;
+    return (
+      <div>
+        <input type='text' onChange={this.handleInputChange} />
+        <button onClick={(): void => saveNewRoom(this.state.inputValue)}>Create</button>
+      </div>
+    );
+  }
+}
+
+/* const CreateRoomDialog = ({ saveNewRoom }: DispatchPropsType): Node => {
+ *   return (
+ *     <div>
+ *       <input type='text' />
+ *       <button onClick={saveNewRoom}>Create</button>
+ *     </div>
+ *   );
+ * };
+ *  */
 // TODO This might be breaking everything
 const emptyFun = null;
 const mapDispatch = (dispatch: DispatchFuncType): DispatchPropsType => ({
@@ -26,4 +51,5 @@ const mapDispatch = (dispatch: DispatchFuncType): DispatchPropsType => ({
 });
 
 const connected = connect(emptyFun, mapDispatch)(CreateRoomDialog);
-export default dialogHoc(CREATE_ROOM_DIALOG)(connected);
+const dialoged = dialogHoc(CREATE_ROOM_DIALOG)(connected);
+export default dialoged;

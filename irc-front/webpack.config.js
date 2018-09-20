@@ -18,7 +18,7 @@ const config = {
     publicPath: '/static/'
   },
   plugins: [
-    new FlowWebpackPlugin(),
+    // new FlowWebpackPlugin(),
     new HotModuleReplacementPlugin()
   ],
   devServer: {

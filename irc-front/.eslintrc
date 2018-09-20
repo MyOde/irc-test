@@ -8,6 +8,7 @@
     "plugin:react/recommended"
   ],
   "rules": {
+    "react/prop-types": 0,
     "react/display-name": 0,
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "quotes": [2, "single"],

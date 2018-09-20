@@ -1,6 +1,5 @@
 // @flow
 import type { ChatHeaderType } from 'ducks/stateType.js';
-/* import { CREATE_ROOM } from 'ducks/chatRoom/types.js'; */
 
 export const CREATE_ROOM_DIALOG = 'CREATE_ROOM_DIALOG';
 
@@ -10,7 +9,9 @@ export type NavigateHomeType = {
 
 export type ChangeToRoomType = {
   type: 'ROOM',
-  id: string,
+  payload: {
+    id: string
+  },
   isNew: boolean
 };
 
@@ -29,11 +30,17 @@ export type PopulateHomeRoomsType = {
   rooms: Array<ChatHeaderType>
 };
 
-const changeToRoomBase = (id: string, isNew: boolean): ChangeToRoomType => ({
-  type: 'ROOM',
-  id,
-  isNew
-});
+const changeToRoomBase = (id: string, isNew: boolean): ChangeToRoomType => {
+  // eslint-disable-next-line
+  console.log(id, isNew);
+  return {
+    type: 'ROOM',
+    payload: {
+      id
+    },
+    isNew
+  };
+};
 
 export const changeToRoom = (id: string): ChangeToRoomType => changeToRoomBase(id, false);
 export const changeToEmptyRoom = (id: string): ChangeToRoomType => changeToRoomBase(id, true);

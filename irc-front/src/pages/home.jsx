@@ -6,6 +6,7 @@ import React from 'react';
 import { roomHeaders } from 'ducks/home/selectors.js';
 import { changeToRoom, createRoomDialog } from 'ducks/home/actions.js';
 import IrcButton from 'components/ircButton.jsx';
+import CreateRoomDialog from 'dialogs/createRoom.jsx';
 
 type PropsType = StatePropsType & DispatchPropsType;
 
@@ -24,7 +25,6 @@ const roomsToNavButton = (
   { id, name }: ChatHeaderType
 ): Node => (
   <li key={id}>
-    <div>hello</div>
     <IrcButton action={goToRoom} actionArgs={[id]}>
       {name}
     </IrcButton>
@@ -35,6 +35,7 @@ export const Home = ({ rooms, goToRoom, createRoom }: PropsType): Node => {
   const navList = rooms.map(roomsToNavButton(goToRoom)); //
   return (
     <div>
+      <CreateRoomDialog />
       <button onClick={createRoom}>Create room</button>
       <ul>
         {navList}
